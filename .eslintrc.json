@@ -15,10 +15,12 @@
         "sourceType": "module"
     },
     "plugins": ["@typescript-eslint", "prettier"],
+    "ignoreDestructuring": true,
     "rules": {
         "prettier/prettier": "error",
         "class-methods-use-this": "off",
-        "import/extensions": ["error", "ignorePackages", { "ts": "never" }]
+        "import/extensions": ["error", "ignorePackages", { "ts": "never" }],
+        "camelcase": ["error", { "properties": "never" }]
     },
     "settings": {
         "import/resolver": {
