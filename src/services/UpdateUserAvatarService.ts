@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import User from '../models/User';
 import upload from '../config/upload';
+import AppError from '../errors/AppError';
 
 interface Request {
     user_id: string;
@@ -16,7 +17,7 @@ class UpdateUserAvatarService {
         const user = await userRepository.findOne(user_id);
 
         if (!user) {
-            throw new Error('Usuário não está autenticado');
+            throw new AppError('Usuário não está autenticado', 401);
         }
 
         if (user.avatar) {
