@@ -14,6 +14,10 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
+    "typescript-eslint/interface-name-prefix": [
+        "error",
+        { "prefixWith": "always" }
+    ],
     "plugins": ["@typescript-eslint", "prettier"],
     "ignoreDestructuring": true,
     "rules": {
