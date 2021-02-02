@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
-import AuthenticateUserService from '../services/AuthenticateUserService';
+import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 
 const sessionsRoutes = Router();
 
@@ -11,6 +11,7 @@ sessionsRoutes.post('/', async (request, response) => {
         email,
         password,
     });
+    // delete user.password;
     return response.json({ user, token });
 });
 
