@@ -24,7 +24,8 @@
         "prettier/prettier": "error",
         "class-methods-use-this": "off",
         "import/extensions": ["error", "ignorePackages", { "ts": "never" }],
-        "camelcase": ["error", { "properties": "never" }]
+        "camelcase": ["error", { "properties": "never" }],
+        "no-useless-constructor": "off"
     },
     "settings": {
         "import/resolver": {

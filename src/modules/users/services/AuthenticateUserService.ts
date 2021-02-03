@@ -4,20 +4,28 @@ import { getRepository } from 'typeorm';
 import User from '../infra/typeorm/entities/User';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
+import IUsersRepository from '../repositories/IUsersRepository';
+import { inject, injectable } from 'tsyringe';
 
-interface Request {
+interface IRequest {
     email: string;
     password: string;
 }
 
-class AuthenticateUserService {
-    public async execute({
-        email,
-        password,
-    }: Request): Promise<{ user: User; token: string }> {
-        const usersRepository = getRepository(User);
+interface IResponse {
+    user: User;
+    token: string;
+}
 
-        const user = await usersRepository.findOne({ where: { email } });
+@injectable()
+class AuthenticateUserService {
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository,
+    ) {}
+
+    public async execute({ email, password }: IRequest): Promise<IResponse> {
+        const user = await this.usersRepository.findByEmail(email);
 
         if (!user) {
             throw new AppError('Email ou Senha incorretos.', 401);
